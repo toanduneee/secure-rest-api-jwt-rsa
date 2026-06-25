@@ -24,25 +24,23 @@ CREATE TABLE IF NOT EXISTS user_roles (
     FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
 );
 
--- =========================================================
--- ĐỔ DỮ LIỆU MẪU (SEED DATA)
--- =========================================================
-
 -- 1. Tạo 2 quyền cơ bản
 INSERT INTO roles (name, description) VALUES 
 ('ADMIN', 'Quản trị viên hệ thống'), 
 ('USER', 'Người dùng thông thường');
 
--- 2. Tạo 4 tài khoản (Mật khẩu lưu dạng plaintext dùng cho Lab)
+-- 2. Tạo tài khoản
 INSERT INTO users (username, password, is_active) VALUES 
 ('admin', 'admin123', TRUE),         -- id = 1
 ('toan_at20', 'password123', TRUE),  -- id = 2
-('hung_at20', 'password123', TRUE),  -- id = 3
-('diu_at20', 'password123', TRUE);   -- id = 4
+('hung_at20', 'password123', TRUE),  
+('diu_at20', 'password123', TRUE),   
+('test', '123456', TRUE);
 
 -- 3. Phân quyền cho từng tài khoản
 INSERT INTO user_roles (user_id, role_id) VALUES 
 (1, 1), -- user 'admin' có quyền ADMIN (role_id = 1)
 (2, 2), -- user 'toan_at20' có quyền USER (role_id = 2)
-(3, 2), -- user 'hung_at20' có quyền USER (role_id = 2)
-(4, 2); -- user 'diu_at20' có quyền USER (role_id = 2)
+(3, 2), 
+(4, 2), 
+(5, 2);

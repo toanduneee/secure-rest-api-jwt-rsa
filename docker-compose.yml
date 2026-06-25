@@ -26,9 +26,12 @@ services:
     restart: always
     ports:
       - "3000:3000"
+    volumes:
+      - ./auth-server:/app
+      - /app/node_modules
     environment:
       - PORT=3000
-      - DB_HOST=auth-db # Trỏ thẳng tên container MySQL
+      - DB_HOST=auth-db
       - DB_USER=security_user
       - DB_PASSWORD=user_password_123
       - DB_NAME=identity_provider_db
@@ -45,6 +48,9 @@ services:
     restart: always
     ports:
       - "4000:4000"
+    volumes:
+      - ./resource-server:/app
+      - /app/node_modules
     environment:
       - PORT=4000
       # Gọi sang Auth Server bằng tên container nội bộ
